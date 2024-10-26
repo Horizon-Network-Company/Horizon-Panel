@@ -24,13 +24,13 @@
                     name="resource"
                     id="resourceInput"
                     onkeyup="findResource()"
-                    placeholder="Find resource by name..."
+                    placeholder="Encuentra un recurso por el nombre..."
                 >
                 <div class="d-flex flex-wrap justify-content-xs-center justify-content-between pt-2" style="gap: 1rem;">
                     <div class="d-flex flex-grow-1x" style="gap: 1rem;">
                         <div class="d-flex flex-column flex-lg-row align-items-center" style="gap: 0.5rem;">
                             <span class="form-text text-muted text-center">
-                                Default resources:
+                                Recursos basicos:
                             </span>
                             <label class="switch-lg c-switch c-switch-label c-switch-pill c-switch-success fix-pill-form">
                                 <input type="checkbox" id="defResCheckbox" class="c-switch-input">
@@ -40,7 +40,7 @@
                         
                         <div class="d-flex flex-column flex-lg-row align-items-center" style="gap: 0.5rem;">
                             <span class="form-text text-muted text-center">
-                                Only stopped resources:
+                                Solo recursos detenidos:
                             </span>
                             <label class="switch-lg c-switch c-switch-label c-switch-pill c-switch-success fix-pill-form">
                                 <input type="checkbox" id="stoppedResCheckbox" class="c-switch-input">
@@ -56,7 +56,7 @@
                             id="btnExpandCollapse"
                         />
                         <button class="btn btn-sm btn-primary float-right" type="button" id="btnRefresh" <%= disableActions %>>
-                            <i class="icon-refresh"></i> Reload & Refresh
+                            <i class="icon-refresh"></i> Recargar
                         </button>
                     </div>
                 </div>
@@ -101,18 +101,18 @@
                                     <a class="btn btn-sm btn-outline-warning d-block d-md-inline-block mr-md-1 mb-1 mb-md-0 <%= disableActions %>"
                                         href="#"
                                         onclick="btnCommand('ensure_res', '<%= resource.name %>'); event.preventDefault();" <%= disableActions %>>
-                                        Restart
+                                        Reiniciar
                                     </a>
                                     <a class="btn btn-sm btn-outline-danger d-block d-md-inline-block m-0 <%= disableActions %>"
                                         href="#"
                                         onclick="btnCommand('stop_res', '<%= resource.name %>'); event.preventDefault();" <%= disableActions %>>
-                                        Stop
+                                        Detener
                                     </a>
                                     <% } else { %>
                                     <a class="btn btn-sm btn-outline-success d-block d-md-inline-block <%= disableActions %>"
                                         href="#"
                                         onclick="btnCommand('ensure_res', '<%= resource.name %>'); event.preventDefault();" <%= disableActions %>>
-                                        Start
+                                        Iniciar
                                     </a>
                                     <% } %>
                                 </td>
@@ -213,7 +213,7 @@
 
     //============================================== Refresh List
     $('#btnRefresh').click(() => {
-        const notify = $.notify({ message: '<p class="text-center">Executing Command...</p>' }, {});
+        const notify = $.notify({ message: '<p class="text-center">Ejecutando solicitud...</p>' }, {});
         txAdminAPI({
             type: "POST",
             url: '/fxserver/commands',
@@ -239,7 +239,7 @@
 
     //============================================== Start/Stop/Restart buttons
     function btnCommand(action, parameter) {
-        const notify = $.notify({ message: '<p class="text-center">Executing Command...</p>' }, {});
+        const notify = $.notify({ message: '<p class="text-center">Ejecutando solicitud...</p>' }, {});
         txAdminAPI({
             type: "POST",
             url: '/fxserver/commands',
@@ -305,10 +305,10 @@
         });
         if (expandedCount === resGroupsJS.length) {
             isExpandButton = false;
-            btnExpandCollapse.innerHTML = '<i class="icon-size-actual"></i> Collapse All';
+            btnExpandCollapse.innerHTML = '<i class="icon-size-actual"></i> Colapsar todos';
         } else {
             isExpandButton = true;
-            btnExpandCollapse.innerHTML = '<i class="icon-size-fullscreen"></i> Expand All';
+            btnExpandCollapse.innerHTML = '<i class="icon-size-fullscreen"></i> Expandir todos';
         }
     }
     $('#btnExpandCollapse').click(() => {
